@@ -4,6 +4,7 @@ import Head from 'next/head';
 import BidNFTModal from '../../../components/components/modals/BidNFTModal';
 import ViewBidNFTModal from '../../../components/components/modals/ViewBidNFTModal';
 import DonateNFTModal from '..//..//..//components/components/modals/DonateNFTModal';
+import SlideShow from '..//..//..//components/components/Slideshow';
 
 import useContract from '../../../services/useContract';
 import { Header } from '../../../components/layout/Header'
@@ -15,6 +16,7 @@ export default function AuctionNFT(user) {
     const router = useRouter();
     const [eventId, setEventId] = useState(-1);
     const [list, setList] = useState([]);
+    const [imageList, setimageList] = useState([]);
     const [tokenName, setTokenName] = useState('');
     const [tokenSymbol, setTokenSymbol] = useState('');
     const [title, setTitle] = useState('');
@@ -124,6 +126,7 @@ export default function AuctionNFT(user) {
                 setEventuri(value);
 
                 const object = JSON.parse(value);
+                setimageList( object.properties.allFiles);
                 setTitle(object.properties.Title.description);
                 setselectedAddress(object.properties.wallet.description);
                 setgoalusd(formatter.format(Number(object.properties.Goal.description * 1.10)));
@@ -194,31 +197,12 @@ export default function AuctionNFT(user) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header></Header>
-            {/* <div className="row Auction EventContainer" >
-                <div style={{ display: 'flex', width: '100%', height: '100%', alignItems: 'center', padding: '7px' }}>
-                    <img src={logo} className="Auction Event-Image AuctionImage" />
-                    <div className="DetialsContainer">
-                        <h6 className='Auction Event-Title'>{title}</h6>
-
-                        <div className='TextContainer'>
-                            <h6 className="Auction Event-small-Text">Goal: </h6>
-                            <h6 className="Auction Event-goal-price">{goal} ZENIQ</h6>
-                        </div>
-                        <div className='TextContainer'>
-                            <h6 className="Auction Event-small-Text" name='dateleft' date={date}>{dateleft}</h6>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
+      
 
             <div className="p-campaign" data-view-id="pg_donate_index" >
                 <div className="p-campaign-collage color-background-blue" >
-                    <div className="image-16by9 m-collage-image">
-          
+                <SlideShow images={imageList} />
 
-
-                        <img className="a-image a-image--background" src={logo} />
-                    </div>
                 </div>
                 <header className="p-campaign-header" >
                     <h1 className="mb0 a-campaign-title">
@@ -237,7 +221,7 @@ export default function AuctionNFT(user) {
                                 <h2 className="m-progress-meter-heading" >
                                     {EventEarned}
                                     <span className="text-stat text-stat-title" >
-                                        ZENIQ raised of {goal} ZENIQ goal
+                                        CEUR raised of {goal} CEUR goal
                                     </span>
                                 </h2>
                             </div>
@@ -308,7 +292,7 @@ export default function AuctionNFT(user) {
                                 </div>
                                 <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '11px' }}>
                                     <h6 className="Auction Grey-text smallgrey">Current bid</h6>
-                                    <h6 className='Auction priceText bidprice'>{listItem.price} ZENIQ</h6>
+                                    <h6 className='Auction priceText bidprice'>{listItem.price} CEUR</h6>
                                     <h6 name="date" date={date} className="Auction Grey-text smallgrey">{dateleftBid}</h6>
                                 </div>
                                 <div className='Auction ElementBottomContainer'>

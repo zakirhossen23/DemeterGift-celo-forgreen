@@ -128,7 +128,7 @@ export default function DonateNFTModal({
 						{descriptionInput}
 					</Form.Group>
 					<Form.Group className="mb-3" controlId="formGroupName">
-						<Form.Label>Opening price in ZENIQ</Form.Label>
+						<Form.Label>Opening price in CEUR</Form.Label>
 						{priceInput}
 					</Form.Group>
 

@@ -38,7 +38,7 @@ export default function CreateEvents() {
     const [EventGoal, EventGoalInput] = UseFormInput({
         defaultValue: "",
         type: 'text',
-        placeholder: 'Event Goal in ZENIQ',
+        placeholder: 'Event Goal in CEUR',
         id: 'goal',
     });
 
@@ -67,7 +67,10 @@ export default function CreateEvents() {
         for (let index = 0; index < EventImage.length; index++) {
             const element = EventImage[index];
             const metadata = await client.storeBlob(element)
-            const urlImageEvent = "https://" + metadata + ".ipfs.nftstorage.link"
+            const urlImageEvent = {
+                url: "https://" + metadata + ".ipfs.nftstorage.link",
+                type: element.type
+            }
             allFiles.push(urlImageEvent)
             console.log(urlImageEvent)
         }
@@ -222,10 +225,10 @@ export default function CreateEvents() {
                                             <div className='Event-Images'>
                                                 <button onClick={DeleteSelectedImages} name='deleteBTN' id={i}>X</button>
                                                 {(item.type.includes("image")) ? (<img className='Event-Images-imagebox' src={URL.createObjectURL(item)} />) : (<>
-                                                <div className='Event-Uploaded-File-Container'>
-                                                    <img className='Event-Uploaded-File-clip-icon' src='https://cdn1.iconfinder.com/data/icons/web-page-and-iternet/90/Web_page_and_internet_icons-10-512.png'/>
-                                                     <span className='Event-Uploaded-File-name'>{item.name.substring(0, 10)}...</span>
-                                                </div>                                                   
+                                                    <div className='Event-Uploaded-File-Container'>
+                                                        <img className='Event-Uploaded-File-clip-icon' src='https://cdn1.iconfinder.com/data/icons/web-page-and-iternet/90/Web_page_and_internet_icons-10-512.png' />
+                                                        <span className='Event-Uploaded-File-name'>{item.name.substring(0, 10)}...</span>
+                                                    </div>
                                                 </>
                                                 )}
 

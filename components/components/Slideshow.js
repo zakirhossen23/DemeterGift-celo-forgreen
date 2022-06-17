@@ -5,6 +5,52 @@ import "react-slideshow-image/dist/styles.css";
 
 const Slideshow = (images = []) => {
 
+	function Slider(each, index) {
+		if (each.type.includes("image") == true) {
+			return <>
+				<div key={index} style={{
+					display: "flex",
+					justifyContent: "center",
+					width: "100%",
+					height: "100%"
+				}}>
+					<img src={each.url} />
+				</div>
+			</>
+		}
+		if (each.type.includes("video") == true) {
+			return <>
+				<div key={index} style={{
+					display: "flex",
+					justifyContent: "center",
+					width: "100%",
+					height: "100%"
+				}}>
+					<video width="100%" height="100%" controls>
+						<source src={each.url} />
+					</video>
+				</div>
+			</>
+		}
+		return <>
+			<div key={index}
+				style={{
+					display: "flex",
+					justifyContent: "center",
+					width: "100%",
+					height: "100%",
+					alignItems: "center"
+				}}>
+				<a href={each.url} target="_blank" style={{ wordBreak: "break-all" }}>
+					<span>
+						{each.url}
+					</span>
+					<img src="https://cdn1.iconfinder.com/data/icons/web-page-and-iternet/90/Web_page_and_internet_icons-10-512.png" style={{ height: 325, width: "100%" }} />
+				</a>
+			</div>
+		</>
+	}
+
 
 	//These are custom properties for zoom effect while slide-show
 	const zoomInProperties = {
@@ -36,33 +82,14 @@ const Slideshow = (images = []) => {
 			</div>
 		),
 	};
-
+	console.log("slideShow")
 	if (images['images'].length !== 0 & images !== undefined) {
 
 		return (
 			<div className="m-10">
 				<Zoom {...zoomInProperties}>
 					{images['images'].map((each, index) => (
-						<div key={index} style={{
-							display: "flex",
-							justifyContent: "center",
-							width: "70%",
-							height: "100%"
-						}}>
-							<iframe
-								width="100%"
-								height={315}
-								src={each}
-								frameBorder={0}
-								style={{
-									objectFit: "cover",
-									width: "75%",
-									borderRadius: "0.5rem",
-									boxShadow:
-										"0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-								}}
-					></iframe>
-						</div>
+						Slider(each, index)
 					))}
 				</Zoom>
 			</div>

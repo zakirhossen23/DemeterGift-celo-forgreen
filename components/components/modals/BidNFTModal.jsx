@@ -48,7 +48,7 @@ export default function BidNFTModal({
 		var BidNFTBTN = document.getElementById("bidNFTBTN")
 		BidNFTBTN.disabled = true;
 		if (parseInt(Amount) < parseInt(Highestbid)) {
-			activateWarningModal(`Amount cannot be under ${Highestbid} ZENIQ`);
+			activateWarningModal(`Amount cannot be under ${Highestbid} CEUR`);
 			return;
 		}else{
 			var alertELM = document.getElementById("alert");
@@ -63,7 +63,7 @@ export default function BidNFTModal({
 			 activateWorkingModal("A moment please")
 			const result = await web3.eth.sendTransaction({ from: senderAddress, to: toAddress, value: AmountinFull })
 			 console.log(result);
-			activateWorkingModal("Done! Adding into ZENIQ Network...")
+			activateWorkingModal("Done! Adding into CEUR Network...")
 
 			const tokenUri = await contract.tokenURI(tokenId);
 			var parsed = await JSON.parse(tokenUri);
@@ -143,7 +143,7 @@ export default function BidNFTModal({
 						{Alert}
 					</div>
 					<Form.Group className="mb-3" controlId="formGroupName">
-						<Form.Label>Bid Amount in ZENIQ</Form.Label>
+						<Form.Label>Bid Amount in CEUR</Form.Label>
 						{AmountInput}
 					</Form.Group>
 					<div className="d-grid">

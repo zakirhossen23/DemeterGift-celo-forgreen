@@ -158,7 +158,7 @@ export default function Donation() {
                                 <h6 className='donation event-details-title'>{listItem.Title}</h6>
                                 <div style={{ display: "flex", "whiteSpace": "pre-wrap" }}>
                                     <h6 className='donation event-goal-price' >Goal:  </h6>
-                                    <h6 className='donation event-goal-price' >{listItem.Goal} ZENIQ</h6>
+                                    <h6 className='donation event-goal-price' >{listItem.Goal} CEUR</h6>
                                 </div>
 
                             </div>
