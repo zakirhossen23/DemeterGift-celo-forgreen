@@ -1,0 +1,67 @@
+@media only screen and (max-width: 650px) {
+ .Login.row{
+    width: 100%;
+ }
+ .Login.col{
+    width: 90%;
+ }
+ .Login.eventManagerButton{
+    width: 50%;
+    font-size: 5vw;
+ }
+ .Login.userButton{
+    width: 50%;
+    font-size: 5vw;
+ }
+
+}
+@media only screen and (min-width: 1200px) {
+    .Login.row{
+        width: 100%;
+     }
+     .Login.col{
+        width: 40%;
+     }
+     .Login.eventManagerButton{
+        width: 50%;
+        font-size: 2vw;
+     }
+     .Login.userButton{
+        width: 50%;
+        font-size: 2vw;
+     }
+    
+}
+
+
+  
+.eventManagerButton{
+    background: #5959e9;
+    height: 150px;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    color: yellow;
+}
+
+.eventManagerButton.active{
+    background: #0d0d5a;
+}
+.userButton.active{
+    background: #0e6616;
+}
+.userButton{
+    background: #59e964;
+    height: 150px;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
