@@ -36,6 +36,7 @@ contract CeloERC721 is ERC721 {
 		return _tokenIds;
 	}
 
+
 	function _setTokenEvent(
 		uint256 EventTokenId,
 		uint256 EventId,
