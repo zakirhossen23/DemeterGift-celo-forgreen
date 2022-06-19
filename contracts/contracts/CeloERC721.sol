@@ -17,6 +17,7 @@ contract CeloERC721 is ERC721 {
 	mapping(uint256 => string) private _bidURIs;
 	mapping(uint256 => string) private _tokenURIs;
 	mapping(uint256 => string) private _eventURIs;
+	mapping(uint256 => string) private _eventRaised;
 	mapping(string => string) private _eventTokens;
 
 	constructor(string memory name, string memory symbol)
@@ -53,7 +54,7 @@ contract CeloERC721 is ERC721 {
 		returns (uint256)
 	{
 		_setEventURI(_eventIds, _eventURI);
-
+		_setEventRaised(_eventIds, "0");
 		_eventIds++;
 
 		return _eventIds;
@@ -150,6 +151,7 @@ contract CeloERC721 is ERC721 {
 		virtual
 	{
 		_eventURIs[eventId] = _eventURI;
+		_eventRaised[eventId] = "0";
 	}
 
 	function _setTokenURI(uint256 tokenId, string memory _tokenURI)
@@ -255,6 +257,20 @@ contract CeloERC721 is ERC721 {
 		];
 	}
  
+ 	function getEventRaised(uint256 _eventId)
+		public
+		view
+		virtual
+		returns (string memory)
+	{
+		return _eventRaised[_eventId];
+	}
+
+	function _setEventRaised(uint256 _eventId, string memory _raised)
+		public
+	{
+		_eventRaised[_eventId] = _raised;
+	}
 
  
 	function createBid(
