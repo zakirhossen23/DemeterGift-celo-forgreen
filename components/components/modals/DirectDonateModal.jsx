@@ -55,7 +55,7 @@ export default function DirectDonateModal({
 			let celotoken = await kit.contracts.getGoldToken();
 			let cUSDtoken = await kit.contracts.getStableToken();
 			let cEURtoken = await kit.contracts.getStableToken("cEUR");
-
+			let convertedDefaultAmount = Number(Amount);
 			let AmountinFull = (Number(Amount) * 1000000000000000000).toLocaleString('fullwide', { useGrouping: false });
 			console.log("Donating")
 			if (SelectCoin.value == "CELO") {
@@ -63,6 +63,7 @@ export default function DirectDonateModal({
 					.transfer(EventWallet, AmountinFull)
 					.send({ from: senderAddress, gas:2100000, gasPrice:10000000000  });
 				let celoReceipt = await celotx.waitReceipt();
+				convertedDefaultAmount = convertedDefaultAmount / 1.3258
 			}
 			if (SelectCoin.value == "cEUR") {
 				let cEURtx = await cEURtoken
@@ -76,8 +77,9 @@ export default function DirectDonateModal({
 					.transfer(EventWallet, AmountinFull)
 					.send({ from: senderAddress, gas:2100000, gasPrice:10000000000 });
 				let cUSDReceipt = await cUSDtx.waitReceipt();
+				convertedDefaultAmount = convertedDefaultAmount / 1.0431
 			}
-			const Raised = Number( await contract.getEventRaised(eventId)) + Number(Amount);
+			const Raised = Number( await contract.getEventRaised(eventId)) + Number(convertedDefaultAmount);
 			
 			activateWorkingModal("Done! Please confirm Updating Raised...")
 
