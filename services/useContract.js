@@ -36,14 +36,14 @@ export default function useContract(contractName) {
 		};
 
 		fetchData();
-		if (typeof window.ethereum !== 'undefined') {
-		window.ethereum.on('accountsChanged', fetchData);
-		window.ethereum.on('chainChanged', fetchData);
+		// if (typeof window.ethereum !== 'undefined') {
+		// window.ethereum.on('accountsChanged', fetchData);
+		// window.ethereum.on('chainChanged', fetchData);
 
-		return () => {
-			window.ethereum.removeListener('accountsChanged', fetchData);
-			window.ethereum.removeListener('chainChanged', fetchData);
-		};}
+		// return () => {
+		// 	window.ethereum.removeListener('accountsChanged', fetchData);
+		// 	window.ethereum.removeListener('chainChanged', fetchData);
+		// };}
 	}, []);
 
 	return contractInstance;
